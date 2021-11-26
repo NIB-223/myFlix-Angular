@@ -1,0 +1,16 @@
+
+<div id="main-container">
+  <div id="content">
+    <h1 class="title">Genres</h1>
+    <div class="genres-container">
+      <div *ngFor="let genre of genres;">
+        <h2 class="subtitle">
+        {{genres.Name}}
+        </h2>
+        <p class="content">
+        {{genres.Description}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

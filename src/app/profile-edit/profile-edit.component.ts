@@ -10,7 +10,7 @@ import { MatCard } from '@angular/material/card';
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-
+  editUser: any
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(

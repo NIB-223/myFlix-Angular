@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -9,23 +10,26 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./genre.component.css']
 })
 export class GenreComponent implements OnInit {
-  genres: any[] = [];
+  genreDescription: string = ""
+  genreName: string = ""
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<GenreComponent>,
     public snackBar: MatSnackBar,
-  ) { }
-
-  ngOnInit(): void {
-    this.getGenres();
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { 
+    this.genreName = data.genreName;
   }
 
-  getGenres(): void {
-    this.fetchApiData.getGenres().subscribe((response: any) => {
-      this.genres = response;
-      console.log(response)
-      return this.genres;
+  ngOnInit(): void {
+    this.getGenre();
+  }
+
+  getGenre(): void {
+    this.fetchApiData.getGenre(this.genreName).subscribe((response: any) => {
+     this.genreDescription = response;
+     console.log(response)
     })
   }
 

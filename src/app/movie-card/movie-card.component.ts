@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatDialog } from '@angular/material/dialog';
 import { GenreComponent } from '../genre/genre.component';
+import { DirectorComponent } from '../director/director.component';
+import { SynopsisComponent } from '../synopsis/synopsis.component';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Component({
@@ -12,6 +15,7 @@ import { GenreComponent } from '../genre/genre.component';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  actors: any[] = [];
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
@@ -22,6 +26,10 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  removeCommas(): void {
+    this.actors.join(' ');
+  }
+
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
@@ -29,11 +37,28 @@ export class MovieCardComponent implements OnInit {
       return this.movies;
     });
   }
-
-  openGenreDialog(): void {
+  openGenreDialog(genreName: string): void {
     this.dialog.open(GenreComponent, {
-      width: '280px'
+      width: '280px',
+      data: {
+        genreName: genreName
+      }
     });
   }
-
+  openDirectorDialog(directorName: string): void {
+    this.dialog.open(DirectorComponent, {
+      width: '280px',
+      data: {
+        directorName: directorName
+      }
+    });
+  }
+  openSynopsisDialog(synopsis: string): void {
+    this.dialog.open(SynopsisComponent, {
+      width: '280px',
+      data: {
+         synopsis,
+      }
+    });
+  }
 }

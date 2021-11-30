@@ -23,6 +23,8 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
+import { SynopsisComponent } from './synopsis/synopsis.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
     ProfileViewComponent,
     ProfileEditComponent,
     GenreComponent,
+    DirectorComponent,
+    SynopsisComponent,
 
   ],
   imports: [

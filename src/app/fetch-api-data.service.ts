@@ -76,7 +76,7 @@ export class FetchApiDataService {
 
   getGenres(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'genres', {
+    return this.http.get(apiUrl + '/genres', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,

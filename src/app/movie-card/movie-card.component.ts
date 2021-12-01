@@ -30,11 +30,13 @@ export class MovieCardComponent implements OnInit {
     this.actors.join(' ');
   }
 
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((response: any) => {
-      this.movies = response;
-      console.log(this.movies);
-      return this.movies;
+  getMovies() {
+    this.fetchApiData
+      .getAllMovies()
+      .subscribe((res: any[]) => {
+         this.movies = res;
+         this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
+         console.log(this.actors);
     });
   }
   openGenreDialog(genreName: string): void {
@@ -53,10 +55,11 @@ export class MovieCardComponent implements OnInit {
       }
     });
   }
-  openSynopsisDialog(synopsis: string): void {
+  openSynopsisDialog(synopsis: string, title: string): void {
     this.dialog.open(SynopsisComponent, {
       width: '280px',
       data: {
+        title,
          synopsis,
       }
     });

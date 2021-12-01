@@ -1,0 +1,42 @@
+.main-page {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.mat-raised-button {
+    padding: 2px 52px;
+}
+
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+
+@media screen and (max-width: 650px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .mat-raised-button {
+        padding: 2px 52px;
+        margin-top: 1rem;
+    }
+    .login-btn {
+        padding: 2px 59px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+}

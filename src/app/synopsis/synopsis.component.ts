@@ -16,6 +16,7 @@ export class SynopsisComponent implements OnInit {
     public dialogRef: MatDialogRef<SynopsisComponent>,
     public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: {
+      title: string;
       synopsis: string;
     }
   ) { }

@@ -27,10 +27,10 @@ export class ProfileViewComponent implements OnInit {
   }
 
   getAUser(): void {
-    let currentUser = localStorage.getItem('user');
-    this.fetchApiData.getUser(currentUser).subscribe((response: any) => {
+    
+    this.fetchApiData.getUser(this.user).subscribe((response: any) => {
       this.user = response;
-      console.log(currentUser);
+      console.log(this.user);
     })
   }
 

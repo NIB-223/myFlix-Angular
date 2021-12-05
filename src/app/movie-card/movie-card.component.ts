@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
@@ -16,10 +17,13 @@ import { map, catchError } from 'rxjs/operators';
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   actors: any[] = [];
+  user: any
+
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
     public router:Router,
+    public snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -63,6 +67,15 @@ export class MovieCardComponent implements OnInit {
         title,
          synopsis,
       }
+    });
+  }
+
+  addFavorite(user: any, _id: string): void {
+    this.fetchApiData.addFavMovie(this.user, _id).subscribe((response: any) => {
+      this.snackBar.open('Movie added to favorties!', 'OK', {
+        duration: 2000,
+      });
+      console.log(response)
     });
   }
 }

@@ -1,10 +1,8 @@
-<mat-card >
-    <mat-card-header>
-      <mat-card-title>Welcome, {{user.Username}} </mat-card-title>
-    </mat-card-header>
-        <mat-card-content>
+<mat-card class="card-container">
+
+        <mat-card-content class="content">
             <p>Email: {{user.Email}}</p>
-            <p>Birthday: {{user.Birthday}}</p>
+            <p>Birthday: {{formatDate(user.Birthday)}}</p>
             <p>Username: {{user.Username}}</p>
             <button
             class="float-right"

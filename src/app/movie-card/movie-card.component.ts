@@ -26,8 +26,9 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
-  removeCommas(): void {
-    this.actors.join(' ');
+  removeCommas(actors: any[]): any[] {
+    // this.actors.join(' ');
+    return actors.map((actor: any) => actor.replace(/,/g, '').trim());
   }
 
   getMovies() {
@@ -35,7 +36,7 @@ export class MovieCardComponent implements OnInit {
       .getAllMovies()
       .subscribe((res: any[]) => {
          this.movies = res;
-         this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
+        //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
          console.log(this.actors);
     });
   }

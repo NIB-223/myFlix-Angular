@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Are you sure?</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+        <button
+        (click)="deleteProfile()"
+        mat-raised-button
+        color="warn"
+        >
+        Delete
+        </button>
+       
+        <button
+        (click)="back()"
+        mat-raised-button
+        color="primary"
+        >
+        Go Back
+        </button>
+    </mat-card-actions>
+</mat-card>

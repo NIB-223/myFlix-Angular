@@ -26,9 +26,13 @@ export class ProfileViewComponent implements OnInit {
     this.getAUser();
   }
 
+  formatDate(date:string):string {
+    return new Date(date).toLocaleDateString("en-US")
+  }
+
   getAUser(): void {
-    
-    this.fetchApiData.getUser(this.user).subscribe((response: any) => {
+    let user = localStorage.getItem('username');
+    this.fetchApiData.getUser(user).subscribe((response: any) => {
       this.user = response;
       console.log(this.user);
     })

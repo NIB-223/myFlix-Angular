@@ -22,13 +22,6 @@ export class FetchApiDataService {
     );
   }
 
-  // public addUser(): Observable<any> {
-  //   return this.http.get(apiUrl + '/user').pipe(
-  //     map(this.extractResponseData),
-  //     catchError(this.handleError)
-  //   );
-  // }
-
   public userLogin(userData: any): Observable<any> {
     console.log(userData);
     return this.http.post(apiUrl + '/login', userData).pipe(
@@ -130,7 +123,7 @@ export class FetchApiDataService {
   editUser(userData:any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-    const response = this.http.put(apiUrl + '/users/' + username + userData, {
+    const response = this.http.put(apiUrl + '/users/' + username, userData, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
@@ -141,9 +134,10 @@ export class FetchApiDataService {
     );
   }
 
-  deleteUser(user: string, deleteUser: string): Observable<any> {
+  deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + '/users/' + user + deleteUser, {
+    const username = localStorage.getItem('username')
+    const response = this.http.delete(apiUrl + '/users/' + username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
@@ -156,7 +150,7 @@ export class FetchApiDataService {
 
   deleteMovie(user: string, movieTitle: string, deleteMovie: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const response = this.http.get(apiUrl + '/users/' + user + '/FavoriteMovies/' + movieTitle + deleteMovie, {
+    const response = this.http.delete(apiUrl + '/users/' + user + '/FavoriteMovies/' + movieTitle + deleteMovie, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
@@ -165,6 +159,11 @@ export class FetchApiDataService {
       map(this.extractResponseData),
       catchError(this.handleError)
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   }
 
   // Non-typed response extraction

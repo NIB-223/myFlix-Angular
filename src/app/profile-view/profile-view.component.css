@@ -1,0 +1,32 @@
+.card-container {
+    position: absolute;
+left: 50%;
+top: 30%;
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%)
+}
+
+.content {
+    font-size: 1rem;
+    width: 250px;
+}
+
+@media screen and (max-width: 1366px) {
+    .content {
+        font-size: 1.25rem;
+        width: 500px;
+    }
+    p {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        font-size: 1rem;
+        width: 250px;
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+}

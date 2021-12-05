@@ -31,6 +31,8 @@ import { SynopsisComponent } from './synopsis/synopsis.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
+
 
 
 const appRoutes: Routes = [
@@ -54,6 +56,7 @@ const appRoutes: Routes = [
     GenreComponent,
     DirectorComponent,
     SynopsisComponent,
+    DeleteProfileComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

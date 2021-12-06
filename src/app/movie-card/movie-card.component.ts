@@ -70,8 +70,8 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addFavorite(user: any, _id: string): void {
-    this.fetchApiData.addFavMovie(this.user, _id).subscribe((response: any) => {
+  addFavorite(_id: string): void {
+    this.fetchApiData.addFavMovie(_id).subscribe((response: any) => {
       this.snackBar.open('Movie added to favorties!', 'OK', {
         duration: 2000,
       });

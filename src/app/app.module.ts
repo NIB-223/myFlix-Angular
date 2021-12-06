@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
   { path: 'users', component: ProfileViewComponent },
-  { path: 'favorites', component: FavoriteMoviesComponent },
+  { path: 'FavoriteMovies', component: FavoriteMoviesComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ]
 
@@ -57,6 +57,7 @@ const appRoutes: Routes = [
     DirectorComponent,
     SynopsisComponent,
     DeleteProfileComponent,
+    FavoriteMoviesComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

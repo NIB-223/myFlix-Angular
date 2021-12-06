@@ -29,12 +29,14 @@
                 Synopsis
             </button>
             <button
-            (click)="addFavorite(user, movie.movieTitle)"
+            (click)="addFavorite(movie._id)"
+            class="fav-button"
             >
-                <mat-icon>
-            favorite_border</mat-icon>
-                </button>
-            
+                 <mat-icon color="primary">
+                    favorite_border
+                </mat-icon>
+            </button>
+               
         </mat-card-actions>
     </mat-card>
 </div>

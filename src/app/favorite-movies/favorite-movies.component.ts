@@ -6,8 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
-import { MovieCardComponent } from '../movie-card/movie-card.component'
-import { localizedString } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-favorite-movies',
@@ -25,44 +24,45 @@ export class FavoriteMoviesComponent implements OnInit {
 
   movies: any[] = [];
   favorites: any[] = [];
-  favoritesID: any[] = [];
   actors: any[] = [];
-
-
-  
+  user: any = {}
 
   ngOnInit(): void {
-    this.getMovies()
-    this.getFavorites();
+    this.getUserFavorites();
+    this.getFavoriteMovies();
+    this.getMovies();
   }
 
   removeCommas(actors: any[]): any[] {
     return actors.map((actor: any) => actor.replace(/,/g, '').trim());
   }
 
+  getFavoriteMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((response: any) => {
+      this.movies = response;
+      this.movies.forEach((movie: any) => {
+        if (this.user.favorites.includes(movie._id)) {
+          this.favorites.push(movie)
+        }
+      })
+    })
+  }
 
   getMovies() {
-    this.fetchApiData.getAllMovies().subscribe((res: any) => {
+    this.fetchApiData.getAllMovies().subscribe((res: any[]) => {
          this.movies = res;
-         this.movies.forEach((movie) => {
-           if (this.favoritesID.includes(movie._id))
-           this.favorites.push(movie);
-         })
-         return this.favorites
+        //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
+         console.log(this.actors);
     });
   }
 
-
-
-  getFavorites(): void {
-    let user = localStorage.getItem('username')
-    this.fetchApiData.getUser(user).subscribe((response: any) => {
-      this.favoritesID = response[0].favorites;
-      console.log(response)
+  getUserFavorites(): void {
+    const user = localStorage.getItem('username');
+    this.fetchApiData.getUser(user).subscribe((res: any) => {
+      this.favorites = res.FavoriteMovies;
+      console.log(this.favorites)
+      return this.favorites;
     });
-    setTimeout(() => {
-      this.getMovies();
-    }, 100);
   }
 
   openGenreDialog(genreName: string): void {

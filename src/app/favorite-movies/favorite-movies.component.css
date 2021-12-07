@@ -1,0 +1,36 @@
+.card-container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+.card {
+    max-width: 300px;
+}
+.movie-title {
+    margin-bottom: 2rem!important;
+}
+
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+    margin-bottom: 8px;
+}
+
+img {
+    width: 300px;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+}
+
+.fav-button {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+mat-icon:hover {
+    color: red;
+}

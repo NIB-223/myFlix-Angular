@@ -28,15 +28,25 @@
             >
                 Synopsis
             </button>
-            <button
-            (click)="addFavorite(movie._id)"
-            class="fav-button"
+   
+            <mat-icon 
+                *ngIf="!favStatus(movie._id)" 
+                (click)="addFavorite(movie._id)"
+                class="favorite-button"
             >
-                 <mat-icon color="primary">
-                    favorite_border
-                </mat-icon>
-            </button>
-               
+                favorite_border
+            </mat-icon>
+
+            <mat-icon 
+                title="Remove from favorites" 
+                color="warn" 
+                *ngIf="favStatus(movie._id)" 
+                (click)="removeFavorite(movie._id)"
+                class="favorite-button-active"
+            >
+                favorite
+            </mat-icon>
+
         </mat-card-actions>
     </mat-card>
 </div>

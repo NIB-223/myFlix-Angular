@@ -15,8 +15,11 @@ import { map, catchError } from 'rxjs/operators';
   styleUrls: ['./movie-card.component.css']
 })
 export class MovieCardComponent implements OnInit {
+
   movies: any[] = [];
   actors: any[] = [];
+  favorites: any[] = [];
+  favoriteMovies: any = [];
   user: any
 
   constructor(
@@ -28,10 +31,10 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getUserFavorites();
   }
 
   removeCommas(actors: any[]): any[] {
-    // this.actors.join(' ');
     return actors.map((actor: any) => actor.replace(/,/g, '').trim());
   }
 
@@ -40,7 +43,6 @@ export class MovieCardComponent implements OnInit {
       .getAllMovies()
       .subscribe((res: any[]) => {
          this.movies = res;
-        //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
          console.log(this.actors);
     });
   }
@@ -70,12 +72,42 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  getUserFavorites(): void {
+    const user = localStorage.getItem('username');
+    this.fetchApiData.getUser(user).subscribe((resp: any) => {
+      this.favorites = resp.FavoriteMovies;
+      console.log(this.favorites)
+      return this.favorites;
+    });
+  }
+
+
   addFavorite(_id: string): void {
     this.fetchApiData.addFavMovie(_id).subscribe((response: any) => {
       this.snackBar.open('Movie added to favorties!', 'OK', {
         duration: 2000,
       });
       console.log(response)
+      return this.getUserFavorites();
     });
+  }
+
+  removeFavorite(_id: string): void {
+    this.fetchApiData.deleteMovie(_id).subscribe((resp: any) => {
+      this.snackBar.open('Removed from favorites!', 'OK', {
+        duration: 2000,
+      });
+      console.log(resp);
+      window.location.reload();
+      return this.getUserFavorites();
+    })
+  }
+
+  favStatus(_id: any): any {
+    if (this.favorites.includes(_id)) {
+      return true;
+    }else {
+      return false;
+    }
   }
 }

@@ -8,6 +8,7 @@ import { DirectorComponent } from '../director/director.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 
 
+
 @Component({
   selector: 'app-favorite-movies',
   templateUrl: './favorite-movies.component.html',
@@ -24,45 +25,54 @@ export class FavoriteMoviesComponent implements OnInit {
 
   movies: any[] = [];
   favorites: any[] = [];
+  favoriteMovies: any = [];
   actors: any[] = [];
-  user: any = {}
+  user: any = {};
 
   ngOnInit(): void {
-    this.getUserFavorites();
-    this.getFavoriteMovies();
     this.getMovies();
+    this.filterFavorites();
+    this.getUserFavorites();
   }
 
   removeCommas(actors: any[]): any[] {
     return actors.map((actor: any) => actor.replace(/,/g, '').trim());
   }
 
-  getFavoriteMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((response: any) => {
-      this.movies = response;
-      this.movies.forEach((movie: any) => {
-        if (this.user.favorites.includes(movie._id)) {
-          this.favorites.push(movie)
-        }
-      })
-    })
-  }
-
   getMovies() {
     this.fetchApiData.getAllMovies().subscribe((res: any[]) => {
-         this.movies = res;
-        //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
-         console.log(this.actors);
+      this.movies = res;
+      //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
+      return this.filterFavorites();
     });
   }
 
   getUserFavorites(): void {
     const user = localStorage.getItem('username');
-    this.fetchApiData.getUser(user).subscribe((res: any) => {
-      this.favorites = res.FavoriteMovies;
-      console.log(this.favorites)
-      return this.favorites;
+    this.fetchApiData.getUser(user).subscribe((resp: any) => {
+      this.favorites = resp.FavoriteMovies;
+      return this.filterFavorites();
     });
+  }
+
+  filterFavorites(): void {
+    this.movies.forEach((movie: any) => {
+      if (this.favorites.includes(movie._id)) {
+        this.favoriteMovies.push(movie);
+      }
+    });
+    return this.favoriteMovies;
+  }
+
+
+  removeFavorite(_id: string): void {
+    this.fetchApiData.deleteMovie(_id).subscribe((resp: any) => {
+      this.snackBar.open('Removed from favorites!', 'OK', {
+        duration: 2000,
+      });
+      console.log(resp);
+      window.location.reload();
+    })
   }
 
   openGenreDialog(genreName: string): void {

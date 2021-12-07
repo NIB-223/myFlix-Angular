@@ -1,9 +1,11 @@
+
 .card-container {
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
-    margin-top: 2rem;
+    padding-top: 2rem;
+   
 }
 .card {
     max-width: 300px;

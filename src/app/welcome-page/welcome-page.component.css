@@ -1,18 +1,56 @@
+* {
+    box-sizing: border-box;
+}
 .main-page {
-    width: 100%;
     text-align: center;
     position: fixed;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
-}
-h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.mat-raised-button {
-    padding: 2px 52px;
+.container {
+    text-align: center;
+    width: 300px;
+  
+}
+
+.logo {
+    max-width: 100px;
+    margin-bottom: .75rem;
+}
+
+.mat-card-header {
+    display: inline-block;
+}
+
+.mat-card-title {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+.mat-card-subtitle {
+    font-size: 1rem;
+    margin-top: 1rem!important;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 52px!important;
+    margin-top: 1rem;
+}
+button {
+    margin-bottom: 1rem!important;
+}
+
+.signup {
+    background-color: white;
+    color: #3f51b5;
+}
+
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button {
+     margin: 0px; 
 }
 
 @media screen and (max-width: 1024px) {

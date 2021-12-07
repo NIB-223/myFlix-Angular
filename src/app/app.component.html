@@ -29,10 +29,11 @@
     </div>
 </mat-sidenav>
 
-    <div *ngIf="user">
+    <div class="flex" *ngIf="user">
         <mat-toolbar color="primary" class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon (click)="sidenav.open()">menu</mat-icon>
         <span>Welcome, {{user}}</span>
+     
     </mat-toolbar>
     </div>
             

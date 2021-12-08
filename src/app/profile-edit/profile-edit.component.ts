@@ -6,6 +6,7 @@ import { MatCard } from '@angular/material/card';
 import { Router } from '@angular/router';
 
 import { DeleteProfileComponent } from '../delete-profile/delete-profile.component'
+const username = localStorage.getItem('username');
 
 @Component({
   selector: 'app-profile-edit',
@@ -13,8 +14,8 @@ import { DeleteProfileComponent } from '../delete-profile/delete-profile.compone
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  editUser: any
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  user: any = {}
+  @Input() userData = { Username: username, Password: '', Email: '', Birthday: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,

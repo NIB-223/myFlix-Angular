@@ -2,6 +2,9 @@
     <mat-card-header>
       <mat-card-title>Edit Profile Info</mat-card-title>
     </mat-card-header>
+    <mat-card-subtitle>
+        *Only Birthday and Email can be changed.
+    </mat-card-subtitle>
     <mat-card-content>
         <form>
             <mat-form-field>
@@ -11,6 +14,7 @@
                 placeholder="Username"
                 type="text"
                 name="Username"
+                required
               >
               </mat-form-field>
               <mat-form-field>
@@ -20,6 +24,7 @@
                 type = "password"
                 placeholder="Password"
                 name="Password"
+                required
               >
             </mat-form-field>
             <mat-form-field>

@@ -10,9 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login-form.component.css']
 })
 export class UserLoginFormComponent implements OnInit {
+   /** 
+   * bind form input values to userData object 
+   */
 
   @Input() userData = { Username: '', Password: '' };
-
+  /**
+    * All constructor items are documented as properties
+    * @ignore
+  */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -23,6 +29,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   // This is the function responsible for sending the form inputs to the backend
+
+  /**
+   * Login method:
+   * @returns send form inputs to the backend, sends success message, access token and then redirects to {@link MovieCardComponent}
+   */
 loginUser(): void {
   this.fetchApiData.userLogin(this.userData).subscribe((response: any) => {
   localStorage.setItem('username', response.user.Username);

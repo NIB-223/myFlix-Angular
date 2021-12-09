@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-profile.component.css']
 })
 export class DeleteProfileComponent implements OnInit {
-
+   /**
+    * All constructor items are documented as properties
+    * @ignore
+    */
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -19,9 +22,11 @@ export class DeleteProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+/**
+ * deletes profile
+ */
   deleteProfile(): void {
-    this.fetchApiData.deleteUser().subscribe(
-      (response: any) => {
+    this.fetchApiData.deleteUser().subscribe(() => {
       this.snackBar.open("Profile deleted.", "OK", {
         duration: 2000,
       });
@@ -38,7 +43,9 @@ export class DeleteProfileComponent implements OnInit {
     })
   }
 
-  
+  /**
+   * sends user back to @link ProfileViewComponent
+   */
   back(): void {
     this.router.navigate(['users']).then(() => {
       window.location.reload();

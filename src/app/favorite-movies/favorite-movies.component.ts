@@ -42,7 +42,6 @@ export class FavoriteMoviesComponent implements OnInit {
   getMovies() {
     this.fetchApiData.getAllMovies().subscribe((res: any[]) => {
       this.movies = res;
-      //  this.actors = res.map((movie: any) => movie.actor.replace(/,/g, ''));
       return this.filterFavorites();
     });
   }

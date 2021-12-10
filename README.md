@@ -1,4 +1,7 @@
 # MyFlixAngularClient
+This is the Angular version of a RESTful API I build a while ago.  It has all the same endpoints and funcitons, just a different framework and UI.  Here are the links to the previous projects:
+https://github.com/Drxl95/movie_api
+https://github.com/Drxl95/myFlix-client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 

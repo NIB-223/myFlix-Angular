@@ -9,14 +9,26 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./welcome-page.component.css']
 })
 export class WelcomePageComponent implements OnInit {
+    /**
+    * All constructor items are documented as properties
+    * @ignore
+  */
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
   }
+
+  /**
+   * opens modal to {@link UserRegistrationFormComponent}
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
     });
   } 
+
+   /**
+   * opens modal to {@link UserLoginFormComponent}
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'

@@ -15,7 +15,10 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
   styleUrls: ['./favorite-movies.component.css']
 })
 export class FavoriteMoviesComponent implements OnInit {
-
+   /**
+    * All constructor items are documented as properties
+    * @ignore
+    */
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
@@ -29,16 +32,26 @@ export class FavoriteMoviesComponent implements OnInit {
   actors: any[] = [];
   user: any = {};
 
+  /**
+   * runs the movie list, filters the movie list for favorites, and then displays only the list of movies that are user's favs
+   */
   ngOnInit(): void {
     this.getMovies();
     this.filterFavorites();
     this.getUserFavorites();
   }
-
+/**
+ * removes extra commas in between names
+ * @param actors -array items are 3 leading actor names
+ * @returns {Array} list of actor names without the extra commas
+ */
   removeCommas(actors: any[]): any[] {
     return actors.map((actor: any) => actor.replace(/,/g, '').trim());
   }
 
+  /**
+   * list of movies
+   */
   getMovies() {
     this.fetchApiData.getAllMovies().subscribe((res: any[]) => {
       this.movies = res;
@@ -46,6 +59,9 @@ export class FavoriteMoviesComponent implements OnInit {
     });
   }
 
+/**
+ * gets list of user's favorite movies
+ */
   getUserFavorites(): void {
     const user = localStorage.getItem('username');
     this.fetchApiData.getUser(user).subscribe((resp: any) => {
@@ -54,6 +70,10 @@ export class FavoriteMoviesComponent implements OnInit {
     });
   }
 
+  /**
+   * filters the favorites from movie list
+   * @returns favoritemoveis property (array)
+   */
   filterFavorites(): void {
     this.movies.forEach((movie: any) => {
       if (this.favorites.includes(movie._id)) {
@@ -63,7 +83,10 @@ export class FavoriteMoviesComponent implements OnInit {
     return this.favoriteMovies;
   }
 
-
+/**
+ * removes a favortie from user's fav movie list
+ * @param _id -ID code user's favorite movie
+ */
   removeFavorite(_id: string): void {
     this.fetchApiData.deleteMovie(_id).subscribe((resp: any) => {
       this.snackBar.open('Removed from favorites!', 'OK', {
@@ -74,6 +97,11 @@ export class FavoriteMoviesComponent implements OnInit {
     })
   }
 
+  /**
+   * opens modal to {@link GenreComponent}
+   * @param genreName - name of genre
+   * @returns {string} name of the genre
+   */
   openGenreDialog(genreName: string): void {
     this.dialog.open(GenreComponent, {
       width: '280px',
@@ -82,6 +110,12 @@ export class FavoriteMoviesComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * opens modal to {@link DirectorComponent} 
+   * @param directorName -name of director
+   * @returns {string} -name of the director
+   */
   openDirectorDialog(directorName: string): void {
     this.dialog.open(DirectorComponent, {
       width: '280px',
@@ -90,6 +124,13 @@ export class FavoriteMoviesComponent implements OnInit {
       }
     });
   }
+
+    /**
+   * opens modal to {@link SynopsisComponent}
+   * @param synopsis -synopsis of the movie
+   * @param title  - movie title
+   * @returns {string} returns both the title of the movie and the synopsis of the movie
+   */
   openSynopsisDialog(synopsis: string, title: string): void {
     this.dialog.open(SynopsisComponent, {
       width: '280px',

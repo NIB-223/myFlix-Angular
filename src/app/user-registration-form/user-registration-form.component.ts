@@ -19,8 +19,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegistrationFormComponent implements OnInit {
 
+  /**
+   * bind form input values to userData object
+   */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
 
+    /**
+    * All constructor items are documented as properties
+    * @ignore
+    */
 constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -29,7 +36,10 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+ * sends userData to backend, closes modal and shows success message
+ * @returns {object} -user account info into db
+ */
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
   // Logic for a successful user registration goes here! (To be implemented)

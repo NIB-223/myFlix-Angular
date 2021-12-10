@@ -21,15 +21,25 @@ export class ProfileViewComponent implements OnInit {
     public dialog: MatDialog,
     public router: Router,
   ) { }
-
+/**
+ * When component is mounted, gets user info
+ */
   ngOnInit(): void {
     this.getAUser();
   }
-
+/**
+ * reformats the date from ISO 8601 to en-Us
+ * @param date - the new formatted date
+ * @return new date
+ */
   formatDate(date:string):string {
     return new Date(date).toLocaleDateString("en-US")
   }
 
+  /**
+   * gets user info
+   * @returns {object} information in the user object
+   */
   getAUser(): void {
     let user = localStorage.getItem('username');
     this.fetchApiData.getUser(user).subscribe((response: any) => {
@@ -38,6 +48,9 @@ export class ProfileViewComponent implements OnInit {
     })
   }
 
+  /**
+   * opens dialog box to {@link ProfileEditComponent}
+   */
   openProfileEditDialog(): void {
     this.dialog.open(ProfileEditComponent, {
       width: '280px'

@@ -17,15 +17,25 @@ export class GenreComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<GenreComponent>,
     public snackBar: MatSnackBar,
+    
+    /**
+     * injects the genre name and description into modal
+     */
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.genreName = data.genreName;
   }
 
+/**
+ * displays the genre info when component is mounted
+ */
   ngOnInit(): void {
     this.getGenre();
   }
 
+/**
+ * gets the genre name and its definition (description)
+ */
   getGenre(): void {
     this.fetchApiData.getGenre(this.genreName).subscribe((response: any) => {
      this.genreDescription = response;

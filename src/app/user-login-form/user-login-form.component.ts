@@ -32,7 +32,8 @@ export class UserLoginFormComponent implements OnInit {
 
   /**
    * Login method:
-   * @returns send form inputs to the backend, sends success message, access token and then redirects to {@link MovieCardComponent}
+   * send form inputs to the backend, sends success message, access token and then redirects to {@link MovieCardComponent}
+   * @returns {Array} movie list
    */
 loginUser(): void {
   this.fetchApiData.userLogin(this.userData).subscribe((response: any) => {

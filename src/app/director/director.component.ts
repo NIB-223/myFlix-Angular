@@ -14,7 +14,10 @@ export class DirectorComponent implements OnInit {
   directorBirth: string= ""
   directorDeath: string= ""
   directorBio: string= ""
-
+    /**
+    * All constructor items are documented as properties
+    * @ignore
+    */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<DirectorComponent>,
@@ -23,11 +26,17 @@ export class DirectorComponent implements OnInit {
   ) {
     this.directorName = data.directorName;
    }
-
+/**
+ * When component mounts, {@link getDirector} is run
+ */
   ngOnInit(): void {
     this.getDirector();
   }
-
+/**
+ * gets director information by director name
+ * @param directorName - name of director
+ * @returns Biography, Birthdate, Deathdate (if any) of director
+ */
   getDirector(): void {
     this.fetchApiData.getDirector(this.directorName).subscribe((response: any) => {
       this.directorBio = response.Bio;

@@ -14,9 +14,16 @@ const username = localStorage.getItem('username');
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-  user: any = {}
-  @Input() userData = { Username: username, Password: '', Email: '', Birthday: '' };
 
+  user: any = {}
+    /**
+   * requried input fields for entering profile info
+   */
+  @Input() userData = { Username: username, Password: '', Email: '', Birthday: '' };
+  /**
+    * All constructor items are documented as properties
+    * @ignore
+  */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<ProfileEditComponent>,
@@ -25,11 +32,18 @@ export class ProfileEditComponent implements OnInit {
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {}
-
+/**
+ * opens dialog box to {@link DeleteProfileComponent} 
+ */
   deleteProfile(): void {
     this.dialog.open(DeleteProfileComponent);
   }
 
+
+  /**
+   * Edits user's birthdate and email
+   * @returns {object} changed user info in object
+   */
   editProfile(): void {
     this.fetchApiData.editUser(this.userData).subscribe((response: any) => {
       this.dialogRef.close();

@@ -15,6 +15,10 @@ export class SynopsisComponent implements OnInit {
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<SynopsisComponent>,
     public snackBar: MatSnackBar,
+    /**
+     * injects movie data from object into modal
+     * @return {string} -movie title and synopsis
+     */
     @Inject(MAT_DIALOG_DATA) public data: {
       title: string;
       synopsis: string;
